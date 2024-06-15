@@ -1,0 +1,97 @@
+
+
+
+.poll {
+    width: 590px;
+    margin-top: 40px ; /* Center the poll horizontally and provide some margin */
+    background: #ffffff;
+    border-radius: 7px;
+    border: 1px solid gray;
+    /*box-shadow: 0 0 10px rgb(0 0 0); !* Adjust the box shadow *!*/
+    box-shadow: -2px -2px 5px #00000040, 3px 3px 7px #00000040;
+    padding: 20px; /* Add some padding for better spacing */
+}
+
+.poll .question {
+    color: #111111;
+    font-size: 1.5em;
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 10px; /* Adjust padding for better spacing */
+}
+
+.poll .answers .answer {
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    border: 1px solid #d4d4d4;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 10px; /* Adjust margin for better spacing */
+    background-color: #f9f9f9; /* Add background color */
+}
+
+.poll .answers .answer.selected {
+    border: 2px solid #8f9fe8;
+    background-color: #e8f1ff; /* Add background color for selected answer */
+}
+
+.poll .answers .answer span.percentage_value {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    width: 40px;
+    color: #111111;
+    font-size: 15px;
+}
+
+.poll .answers .answer span.percentage_bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: #97b5f5;
+    z-index: -2;
+    transition: width 200ms ease-in-out;
+}
+
+
+/* Define the animation */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+/* Apply the animation to the button */
+.answer button {
+    background-color: #247ba0;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 198;
+}
+
+/* Animation effect class */
+.vote-animation {
+    animation: pulse 1.5s;
+}
+
+/* Define the selected class */
+.answer button.selected {
+    background-color: green; /* Change the background color to indicate selection */
+    color: white; /* Change the text color to improve visibility */
+    /* Add any other styling you want for the selected button */
+}
+
+     /* Style for the disabled remove button */
+ .option-item.old-option .btn-remove-option {
+     color: #ccc; /* Change color to gray */
+     cursor: not-allowed; /* Change cursor to not-allowed */
+ }
+

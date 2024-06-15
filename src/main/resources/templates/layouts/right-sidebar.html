@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="../../static/assets/js/event.js"></script>
+
+    <style>
+        .right-sidebar-events {
+            height: 350px;
+            margin-bottom: 10px;
+            overflow: hidden !important; /* Hide overflow */
+        }
+    </style>
+</head>
+<body>
+
+
+<!-- right -->
+<div id="right" th:fragment="right-sidebar" class="right-sidebar" style="background-color: #ffffff ; border: 1px solid #857b7b;">
+    <div class="right-sidebar-events"  id="events" style="height:300px;margin-bottom: 10px;overflow-y: auto;margin-left: 10%;margin-top: 152px; scrollbar-width: none;" >
+
+        <div class="title event" style="position: fixed; top: -47px; z-index: 1;background-color: #369;width: 348px;height: 60px;margin-left: -34px;">
+            <span style="font-size: 23px;margin-left: 31px;margin-top: 6px;color:white;font-family: Math">Events</span>
+            <span style="color: white;margin-right: 35px;font-size: 17px;font-family: 'Cambria Math';margin-top: 3px;cursor: pointer" class="see-more"  >See More</span>
+
+        </div>
+
+
+    </div>
+
+
+    <div style="position:fixed">
+        <div class="right-sidebar" style="height: 320px;overflow-y:auto;margin-top: 6px ;scrollbar-width: none;background-color: white; border: 1px solid #857b7b;" >
+
+            <div class="title" style="position: fixed; top: 312px; z-index: 1;background-color: #369;width: 365px;height: 57px;margin-left: -1px;">
+                <span style="font-size: 23px;margin-left: 33px;color:white;cursor: pointer;font-family: Math">Conversation</span>
+            </div>
+
+            <div id="connectedUsers" style="cursor:pointer;margin-top: 59px;margin-left: 10%">
+            </div>
+        </div>
+    </div>
+
+
+    <!--chat-->
+<!--    120-->
+    <div class="main-container hidden" style="position:fixed;top:290px;width:370px;height: 435px;border: 2px solid #369;">
+        <div class="head-container">
+            <img class="chat-user-image" src="" alt="User Image" style="width:48px;border-radius:50%;margin-left: 25px;">
+            <h5 class="chat-user" style="font-size: 1.40rem;font-family: math;margin-top: 13px;"> </h5>
+            <a href="#" class="" id="closeBtn"><img src="https://svgshare.com/i/Knn.svg" alt="close" class="delete" style="margin-right: 13px;"/></a>
+        </div>
+
+        <div class="message-container chat-area" id="chat-messages" style="width: 375px">
+            <h3><span class="date">Today</span></h3>
+            <div class="sent" id="sent">
+                <h5 class="hour">10:53</h5>
+                <p class="sent-bubble">
+                    Hi, Mark! I made a new design for Messenger App.
+                </p>
+            </div>
+            <div class="received" id="received">
+                <h5 class="hour">10:57</h5>
+                <p class="received-bubble">
+                    Yo! Send it to my assistant and we'll review it during the year.
+                </p>
+            </div>
+            <div class="sent">
+                <h5 class="hour">11:03</h5>
+                <p class="sent-bubble">But Mark...</p>
+            </div>
+            <div class="blocked">
+                <h5 class="hour">11:05</h5>
+                <p class="blocked-bubble">You were blocked by the user</p>
+            </div>
+        </div>
+        <form id="messageForm" name="messageForm" style="margin-bottom: -33px" >
+            <div class="input-container chat" >
+                <input type="text" placeholder=" Enter your message" id="message" style="border: 2px solid #369;border-radius: 3px;height: 40px;"/>
+                <input type="file" id="fileInput1" accept="image/*" style="display: none;">
+                <button style="border: 2px solid white"><img src="/static/assets/images/SentForSgChat.svg" alt="" style="width: 30px;margin-right: -6px;margin-left: 8px;"></button>
+                <ul class="utility-group" style="padding-top:16px;margin-right: -35px;padding-left: 1rem;padding-right: 1rem;">
+                    <li class="emoji-selector" id="emojiSelector" >
+                        <div class="input-container">
+                            <input id="emojiSearch" type="text" name=""  placeholder="Search...">
+                        </div>
+                        <ul id="emojiList" class="emoji-list">
+                        </ul>
+                    </li>
+                    <li id="emojiSelectorIcon"><img src="/static/assets/images/Emoji-EE.svg" alt="" style="width:33px"></li>
+                </ul>
+                <button type="button" id="fileButton"  style="margin-left: 30px;border: 2px solid white"><img src="/static/assets/images/upload-photo.svg" alt="" style="width:34px;margin-right: 8px;"></button>
+                <button type="button" id="recordButton" style="border: 2px solid white;"><img src="/static/assets/images/Voice.svg" alt="" style="width:30px;margin-right: -18px;"></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+</body>
+</html>

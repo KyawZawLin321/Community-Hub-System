@@ -1,0 +1,98 @@
+/* Color/UI color variables */
+:root {
+    --white: #ececec;
+    --black: #000000;
+    --red1: #206f91;
+    --red2: #ffa500;
+    --colorPrimary: var(--red1);
+    --colorSecondary: var(--red2);
+    --cubic-bezier: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Button styling */
+.btn-split {
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 800;
+    border: 0;
+    position: relative;
+    letter-spacing: 0.1em;
+    /*margin: 0 auto;*/
+    padding: 0.5rem 1.5rem;
+    background: #f3f3f3;
+    outline: none;
+    font-size: 11.5px;
+    color: var(--black);
+    transition: all 0.5s var(--cubic-bezier) 0.15s;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgb(77 83 94);
+}
+
+.btn-split::after,
+.btn-split::before {
+    border: 0;
+    content: "";
+    position: absolute;
+    height: 40%;
+    width: 10%;
+    transition: all 0.5s var(--cubic-bezier);
+    z-index: -2;
+    border-radius: 50%;
+}
+
+.btn-split::before {
+    background-color: var(--red1);
+    top: -0.25rem;
+    left: 0.25rem;
+    animation: topAnimation 2s var(--cubic-bezier) 0.25s infinite alternate;
+}
+
+.btn-split::after {
+    background-color: var(--red2);
+    top: 1.9rem;
+    left: 6.5rem;
+    animation: bottomAnimation 2s var(--cubic-bezier) 0.5s infinite alternate;
+}
+
+.btn-split:hover {
+    color: var(--white);
+}
+
+.btn-split:hover::before,
+.btn-split:hover::after {
+    top: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+    animation: none;
+}
+
+.btn-split:hover::after {
+    left: 0rem;
+}
+
+.btn-split:hover::before {
+    top: 0.25rem;
+    left: 0.15rem;
+}
+
+/* Keyframes */
+@keyframes topAnimation {
+    from {
+        transform: translate(0rem, 0);
+    }
+    to {
+        transform: translate(0rem, 1.75rem);
+    }
+}
+
+@keyframes bottomAnimation {
+    from {
+        transform: translate(-5.75rem, 0);
+    }
+    to {
+        transform: translate(0rem, 0);
+    }
+}
+
+

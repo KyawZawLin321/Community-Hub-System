@@ -1,0 +1,620 @@
+<!--STRM-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event</title>
+    <script src="https://kit.fontawesome.com/83cece50f1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/event.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/singlechat.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/comment.css}">
+    <link rel="stylesheet" th:href="@{/static/assets/css/style.css}">
+    <link rel="stylesheet" href="../static/assets/css/search.css">
+    <link rel="stylesheet" href="../static/assets/css/emoji.css">
+<!--    <link rel="stylesheet" href="../static/assets/css/loader.css">-->
+
+
+
+
+
+    <style>
+
+
+        @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+        :root {
+            --background-color: #a5bfd4;
+            --header-color: #1d4e80;
+            --send-color: #e6edf6;
+            --received-color: #f2f2f2;
+            --blocked-color: #ffc1c1;
+            --light-gray: #dfdfdf;
+            --dark-gray: #858a91;
+        }
+
+
+        .btn:hover {
+            opacity: 1;
+        }
+
+
+        .head-container h1 {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .head-container img {
+            width: 30px;
+        }
+
+        .head-container a {
+            text-decoration: none;
+        }
+
+        .message-container h3 {
+            color: var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+            text-align: center;
+            line-height: 0.1rem;
+            margin: 10px 0 30px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .message-container h3 span {
+            padding: 0 15px;
+            background-color: #fff;
+        }
+
+        .message-container div.sent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .message-container div:not(.sent) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .message-container div:last-child {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .message-container .hour {
+            color: var(--dark-gray);
+        }
+
+        .message-container p {
+            position: relative;
+        }
+
+        /* BUBBLE ARROW SENT */
+        .sent p:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 0px;
+            height: 0px;
+            border-top: 0px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-right: 10px solid var(--send-color);
+        }
+
+        /* BUBBLE ARROW RECEIVED */
+        .received p:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -6px;
+            width: 0px;
+            height: 0px;
+            border-top: 0px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 10px solid var(--received-color);
+        }
+
+        .input-container input {
+            width: 100%;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .input-container a {
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--header-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 20px;
+        }
+
+
+        li{
+            list-style-type: none;
+
+        }
+
+
+
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+
+
+        .primary-btn {
+            background-color: #007bff; /* Primary color */
+            color: white; /* Text color */
+            /*border: 2px solid #007bff; !* Primary color border *!*/
+            border-radius: 5px; /* Border radius */
+            padding: 10px 34px; /* Padding */
+            font-size: 16px; /* Font size */
+            cursor: pointer; /* Pointer cursor */
+            display: inline-flex; /* Align icon and text */
+            align-items: center; /* Center align icon and text */
+            text-decoration: none; /* Remove text underline */
+            transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+        }
+
+        .primary-btn i {
+            margin-right: 5px; /* Space between icon and text */
+        }
+
+        .primary-btn:hover {
+            background-color: #0056b3; /* Darker shade for hover effect */
+            color:  #FC3; /* Ensure text color stays white */
+            border-color: #0056b3; /* Darker shade for border */
+        }
+
+
+
+        /*!* Overlay for fading the background *!*/
+        /*.overlay {*/
+        /*    position: fixed;*/
+        /*    top: 0;*/
+        /*    left: 0;*/
+        /*    width: 100%;*/
+        /*    height: 100%;*/
+        /*    background-color: rgba(0, 0, 0, 0.5);*/
+        /*    z-index: 1040; !* Should be less than modal's z-index *!*/
+        /*    display: none;*/
+        /*}*/
+
+
+        /*Loading Spinner*/
+        @keyframes l7 {
+            to {
+                transform: rotate(.5turn);
+            }
+        }
+
+        .spinner-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; /* Adjust width as needed */
+            height: 200px; /* Adjust height as needed */
+            /*background-color: rgba(255, 255, 255, 0.9); !* Slightly opaque white background *!*/
+            background-color: #FEFDED;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 10px; /* Rounded corners for better aesthetics */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+            z-index: 1000;
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            aspect-ratio: 1;
+            --_c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
+            background:
+                    var(--_c) top,
+                    var(--_c) left,
+                    var(--_c) right,
+                    var(--_c) bottom;
+            background-size: 12px 12px;
+            animation: l7 1s infinite;
+        }
+
+        .uploading-text {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+
+    /*Dat icon*/
+        .dat{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: white; /* White background for overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+            z-index: 1000; /* Ensure overlay is on top */
+        }
+
+        .main-div {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .strm {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            position: absolute;
+            animation: strm-rotate 1s infinite cubic-bezier(0.62, 0.49, 0.52, 0.32);
+            transform: skew(20deg, 20deg);
+            transform-origin: center;
+        }
+
+        .strm-icon1 {
+            border-bottom: 15px solid #fc3;
+            rotate: 4deg;
+        }
+
+        .strm-icon2 {
+            border-bottom: 15px solid black;
+            rotate: 129deg;
+        }
+
+        .strm-icon3 {
+            border-bottom: 15px solid #369;
+            rotate: 272deg;
+        }
+
+        .text {
+            color: black;
+            position: relative;
+            top: 3px;
+            left: 1px;
+        }
+
+        @keyframes strm-rotate {
+            0% {
+                transform: skew(20deg, 20deg) rotate(0deg)
+            }
+            100% {
+                transform: skew(20deg, 20deg) rotate(360deg)
+            }
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+<div th:replace="~{layouts/menu::menu}"></div>
+
+
+<div class="container">
+    <div th:replace="~{layouts/left-sidebar::left-sidebar}"></div>
+
+    <!--Dat icon-->
+    <div class="dat" id="dat">
+        <div class="main-div">
+            <div class="strm-icon1 strm"></div>
+            <div class="strm-icon2 strm"></div>
+            <div class="strm-icon3 strm"></div>
+            <div class="text">DAT</div>
+        </div>
+    </div>
+
+
+
+
+
+    <input type="hidden" th:value="${user.id}" id="id1">
+    <input type="hidden" th:value="${user.name}" id="name">
+    <input type="hidden" th:value="${role}" id="role">
+    <div class="main-content" style="flex-basis: 57%;
+    margin-right: 380px;margin-left: 322px">
+        <div class="content">
+            <div class="center">
+
+                <div class="overlay" id="modalOverlay" style="display: none;"></div>
+
+                <div class="form" style="margin-top: 20px">
+                    <div class="form-body" style="display: flex; align-items: center; justify-content: center;">
+                        <button class="create-event-btn primary-btn" onclick="openModal()" sec:authorize="hasAuthority('Admin')" style="background-color: #369">
+                            <i class="fas fa-plus-circle"></i> Create
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div style="margin-top: 25px">
+                <div class="cards">
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Create Event Modal-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+
+                        <h5 class="modal-title" id="exampleModalLabel" style="font-family: Math">New Event</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" onclick="closeModal()" id="cancelButton2">&times;</span>
+                        </button>
+
+
+                    </div>
+                    <div class="modal-body" style="background-color: #e0f4f5">
+                        <form id="post-form"  enctype="multipart/form-data" >
+
+                            <div class="mb-3">
+                                <img id="image-preview" alt="Image Preview" hidden>
+                                <label for="file" style="color: #369;" class="col-form-label">Choose Photo</label>
+                                <input type="file"  class="form-control" id="file" name="file" accept="image/*"
+                                       onchange="previewImage(event)">
+                                <div id="fileError" class="error-message" style="color: red; display: none;">Photo cannot be empty.</div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label for="content" style="color: #369;font-family: Math" class="col-form-label">Content</label>
+                                <input type="text" id="content" class="form-control" name="content" rows="4" cols="50" maxlength="30" placeholder="Enter title here...." style="font-family: Math">
+                                <div id="contentError" class="error-message" style="color: red; display: none;">Content cannot be empty.</div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="startDate" style="color:#369;font-family: Math" class="col-form-label">Start Date</label>
+                                <input type="datetime-local"class="form-control" id="startDate" name="startDate"></div>
+                            <div id="startDateError" class="error-message" style="color: red; display: none;">Start Date cannot be empty.</div>
+
+                            <div class="mb-3">
+                                <label for="endDate" style="color: #369;font-family: Math" class="col-form-label">End Date</label>
+                                <input type="datetime-local" class="form-control" id="endDate" name="endDate">
+                                <div id="endDateError" class="error-message" style="color: red; display: none;font-family: Math" >End Date cannot be empty.</div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="eventDetails" style="color: #369;" class="col-form-label">Event Details</label>
+                                <textarea type="text" id="eventDetails" class="form-control" name="eventDetails" placeholder="What are details?" style="font-family: Math"></textarea>
+                                <div id="eventDetailsError" class="error-message" style="color: red; display: none;">Event details cannot be empty.</div>
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" onclick="closeModal()" id="cancelButton1" style="font-family: Math">Cancel</button>
+
+                                <input type="submit" class="btn btn-primary" style="font-family: Math"  value="Add" onclick="return validateForm()">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Spinner Container -->
+        <div id="loading-spinner" class="spinner-container" style="display: none;">
+            <div class="spinner"></div>
+            <div class="uploading-text">Uploading, please wait...</div>
+        </div>
+
+        <!--testing over modal box-->
+<!--        <div id="loader" class="loader" style="display: none;"></div>-->
+    </div>
+    <div th:replace="~{layouts/right-sidebar::right-sidebar}"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/static/assets/js/singlechat.js}" crossorigin="anonymous"></script>
+<script src="../../static/assets/js/event.js"></script>
+<script th:src="@{/static/assets/js/right-sidebar.js}"></script>
+
+<!--Success Modal Box-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+
+
+<!--View Event Modal-->
+<div class="modal fade" id="viewEventModal" tabindex="-1" role="dialog" aria-labelledby="viewEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewEventModalLabel" style="font-family: Math">Event Details</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="viewEventContent">
+
+                    <div class="mb-3 row justify-content-center">
+                        <div class="col-8 align-self-center">
+                            <span id="viewPhoto1"></span>
+                            <img id="image" src="#" alt="Image Preview" style="height: 180px;width: 250px;border-radius: 12px;object-fit: cover;margin-left: 25px">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="viewContent" class="col-4 col-form-label" style="font-family: Math"><i class="fas fa-align-left"></i>&nbsp;Content</label>
+                        <div class="col-8 align-self-center">
+                            <span id="viewContent"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="viewStartDate" class="col-4 col-form-label" style="font-family: Math"> <i class="fas fa-calendar-alt"></i>&nbsp;Start Date</label>
+                        <div class="col-8 align-self-center">
+                            <span id="viewStartDate"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="viewEndDate" class="col-4 col-form-label" style="font-family: Math">  <i class="fas fa-calendar-check"></i>&nbsp;End Date</label>
+                        <div class="col-8 align-self-center">
+                            <span id="viewEndDate"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <label for="viewEventDetails" class="col-4 col-form-label" style="font-family: Math"> <i class="fas fa-info-circle"></i>&nbsp;Event Details</label>
+                        <div class="col-8 align-self-center">
+                            <span id="viewEventDetails"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" style="font-family: Math">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--STRM-->
+
+<!-- Update Event Modal -->
+<div class="modal fade" id="viewEventModal1" tabindex="-1" role="dialog" aria-labelledby="viewEventModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewEventModalLabel1" style="font-family: Math">Event Edit</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true" onclick="closeModal()">&times;</span>  <!--set onclick-->
+                </button>
+            </div>
+
+            <div class="modal-body"  style="background-color: #e0f4f5">
+                <form id="updateEventForm" enctype="multipart/form-data">
+                    <input type="hidden" id="eventId" name="id">
+
+                    <div id="viewEventContent1">
+
+                        <div class="mb-3">
+
+                            <img id="image-preview1" src="#" alt="Image Preview">
+                            <label for="viewPhoto" class="col-form-label" style="color: #369;font-family: Math" >Choose Photo</label>
+                            <input type="file" class="form-control" id="viewPhoto" name="file" accept="image/*" onchange="previewImage1(event)">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="viewContent" class="col-form-label" style="color: #369;font-family: Math">Content:</label>
+                            <input type="text" class="form-control" id="viewContent1" name="content">
+                            <div id="contentError1" class="error-message" style="color: red; display: none;">Content cannot be empty.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="viewStartDate" class="col-form-label" style="color: #369;font-family: Math">Start Date:</label>
+                            <input type="datetime-local" class="form-control" id="viewStartDate1" name="startDate">
+                            <div id="startDateError1" class="error-message" style="color: red; display: none;font-family: Math">Invalid start date.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="viewEndDate" class="col-form-label" style="color: #369;font-family: Math">End Date:</label>
+                            <input type="datetime-local" class="form-control" id="viewEndDate1" name="endDate">
+                            <div id="endDateError1" class="error-message" style="color: red; display: none;font-family: Math">Invalid end date.</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="viewEventDetails" class="col-form-label" style="color: #369;font-family: Math">Event Details:</label>
+                            <textarea type="text" class="form-control" id="viewEventDetails1" name="eventDetails"></textarea>
+                            <div id="eventDetailsError1" class="error-message" style="color: red; display: none;font-family: Math">Event details cannot be empty.</div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="closeModal()" style="font-family: Math">Cancel</button>
+               <button id="update " type="submit" class="btn btn-primary" onclick="return updateForm()"style="font-family: Math">Update</button>
+<!--                        <button id="update" type="submit" class="btn btn-primary">Update</button>-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--Delete Event Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">       <!--modal-dialog-centered-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel1" style="font-family: Math">Confirm Deletion</h5>
+                <button type="button" class="close" data-bs-dismiss="modal"  aria-label="Close" >
+                    <span aria-hidden="true" onclick="closeModal()">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="deleteForm">
+                    <div class="form-group">
+                        <h5 style="font-family: Math" >Are you sure you want to delete?</h5>
+                    </div>
+                    <input type="hidden" class="form-control" id="eventIdToDelete" name="id">
+                    <div class="modal-footer">
+                       <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
+                        <button type="button" id="cancelButton" class="btn btn-secondary" data-bs-dismiss="modal" style="font-family: Math">Cancel</button>
+
+                        <button type="submit" class="btn btn-danger" style="font-family: Math">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+</html>
+
+
+
+<script>
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const dat = document.getElementById('dat');
+            dat.style.opacity = '0';
+            dat.style.pointerEvents = 'none';
+            setTimeout(() => {
+                dat.style.display = 'none';
+            }, 500); // Match the transition duration
+        }, 500);
+    });
+</script>
+
+
+
+
+

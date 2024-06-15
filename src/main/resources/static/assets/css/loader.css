@@ -1,0 +1,63 @@
+.dat{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* White background for overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease;
+    z-index: 1000; /* Ensure overlay is on top */
+}
+
+.main-div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    position: absolute;
+    animation: loader-rotate 1s infinite cubic-bezier(0.62, 0.49, 0.52, 0.32);
+    transform: skew(20deg, 20deg);
+    transform-origin: center;
+}
+
+.loader-icon1 {
+    border-bottom: 15px solid #fc3;
+    rotate: 4deg;
+}
+
+.loader-icon2 {
+    border-bottom: 15px solid black;
+    rotate: 129deg;
+}
+
+.loader-icon3 {
+    border-bottom: 15px solid #369;
+    rotate: 272deg;
+}
+
+.text {
+    color: black;
+    position: relative;
+    top: 3px;
+    left: 1px;
+    font-family: Math;
+    font-size: xx-large;
+}
+
+@keyframes loader-rotate {
+    0% {
+        transform: skew(20deg, 20deg) rotate(0deg)
+    }
+    100% {
+        transform: skew(20deg, 20deg) rotate(360deg)
+    }
+}

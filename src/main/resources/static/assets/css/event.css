@@ -1,0 +1,617 @@
+/*
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap");
+
+
+!* ======== Article: Cards ========= *!
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3rem;
+    column-gap: 3rem;
+
+}
+
+.card {
+    width: calc(100% - 0%); !* Decreasing width by 20px *!
+    !*height: 220px; !* Adjusting the height to be shorter *!*!
+    height: 300px;
+    position: relative;
+    justify-self: center;
+    !* max-width: 333px; !* Adjusting max-width *!
+     max-height: 307px;*!
+    background-color: #0b1015;
+    border-radius: 20px;
+}
+
+
+.card img.ui-preview {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.card .ui-details {
+    !*padding: 1.5rem 0;*!
+    padding: 0.7rem 0;
+}
+
+.ui-details h4 {
+    margin-bottom: 0.5rem;
+    margin-top: -10px;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.ui-details p {
+    font-weight: 300;
+}
+
+.btn {
+    padding: 0.5rem 3rem;
+    border-radius: 8px;
+}
+
+.card .btn-view {
+    background: linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -webkit-linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -moz-linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -o-linear-gradient(to bottom, #0065ae, #00b7f1);
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+footer .github-logo {
+    display: block;
+    text-align: center;
+}
+
+.github-logo img {
+    width: 80px;
+}
+
+!* ======== Media Queries ======== *!
+@media (max-width: 1090px) {
+    .container {
+        padding: 0 3rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 410px) {
+    .container {
+        padding: 0 1rem;
+    }
+    article.content > .container {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 330px) {
+    .heading {
+        font-size: 1.5rem;
+    }
+
+
+}
+
+!*STRM*!
+
+
+
+.create-event-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: blue;
+    font-size: 23px;
+    margin-left: 70px;
+    display: flex;
+    align-items: center;
+}
+
+p
+.create-event-btn:hover {
+    color: #555; !* Change the color to match your design *!
+}
+
+
+.header h1 {
+    color: #1877f2;
+}
+
+
+#open-modal span {
+    margin-right: 10px;
+}
+
+
+
+#image-preview {
+    display: block;
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-left: 100px;
+    width: 250px;
+
+}
+
+
+#image-preview1 {
+    display: block;
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-left: 100px;
+    width: 250px;
+
+}
+
+
+!*#image-preview1 {
+    display: block; !* Ensures it's a block-level element *!
+    max-width: 300px;
+    height: 200px;
+    margin-left: 130px; !* Center horizontally with added space *!
+    width: 200px; !* Adjust the width to your desired square size *!
+    border-radius: 10px; !* Adjust the border radius as needed *!
+    border: 2px solid black; !* Add a border and adjust properties as needed *!
+}*!
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+
+.form-body img {
+    width: 100px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+
+
+
+!* Dropdown Container *!
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+!* Adjust the icon color and size *!
+!*.dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white; !* Adjust color as needed *!
+}*!
+
+!*.dropbtn {
+    background-color: black; !* Set the background color *!
+    border: 1px solid black; !* Add a solid border *!
+    cursor: pointer;
+    width: 10px; !* Set width for square shape *!
+    height: 30px; !* Set height for square shape *!
+    display: flex; !* Center the icon *!
+    align-items: center; !* Center the icon vertically *!
+    justify-content: center; !* Center the icon horizontally *!
+    padding: 0; !* Remove any default padding *!
+    color: white; !* Set icon color *!
+    border-radius: 10px; !* Add border radius for rounded corners *!
+}*!
+
+.dropbtn {
+    background-color: grey; !* Set the background color to grey *!
+    border: 1px solid grey; !* Add a solid border with the same grey color *!
+    cursor: pointer;
+    width: 30px; !* Adjust the width to make it square *!
+    height: 30px; !* Adjust the height to make it square *!
+    display: flex; !* Center the icon *!
+    align-items: center; !* Center the icon vertically *!
+    justify-content: center; !* Center the icon horizontally *!
+    padding: 0; !* Remove any default padding *!
+    color: white; !* Set icon color *!
+    border-radius: 5px; !* Add border radius for slightly rounded corners *!
+    transition: background-color 0.3s, border-color 0.3s; !* Add transition for smooth color change *!
+}
+
+.dropbtn:hover {
+    background-color: #FC3; !* Change background color to yellow on hover *!
+    border: 1px solid #FC3; !* Change border color to yellow on hover *!
+    color: black; !* Change icon color to black on hover *!
+}
+
+
+.dropbtn i {
+    color: white; !* Ensure the icon is visible *!
+    font-size: 24px; !* Adjust icon size as needed *!
+}
+!* Dropdown Content (Hidden by Default) *!
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0b1015; !* Adjust background color *!
+    min-width: 80px;
+    z-index: 1;
+    border-radius: 8px; !* Add border radius *!
+}
+
+!* Links inside the dropdown *!
+.dropdown-content button {
+    color: white; !* Adjust color as needed *!
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+
+
+!* Position the dropdown icon over the image preview *!
+.card {
+    position: relative;
+}
+.dropdown-img{
+ position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+
+.ui-preview {
+    position: relative;
+    z-index: 1; !* Ensure the image is behind the icon *!
+}
+
+
+
+
+
+*/
+
+
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700&display=swap");
+
+
+/* ======== Article: Cards ========= */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 3rem;
+    column-gap: 3rem;
+
+}
+
+.card {
+    width: calc(100% - 0%); /* Decreasing width by 20px */
+    /*height: 220px; !* Adjusting the height to be shorter *!*/
+    height: 300px;
+    position: relative;
+    justify-self: center;
+    /* max-width: 333px; !* Adjusting max-width *!
+     max-height: 307px;*/
+    background-color: #0b1015;
+    border-radius: 20px;
+}
+
+
+.card img.ui-preview {
+    width: 100%;
+    height: 55%;
+    object-fit: cover;
+    border-radius: 20px 20px 0 0;
+}
+
+.card .ui-details {
+    /*padding: 1.5rem 0;*/
+    padding: 0.7rem 0;
+}
+
+.ui-details h4 {
+    margin-bottom: 0.5rem;
+    margin-top: -10px;
+    font-size: 1.25rem;
+    color: white;
+}
+
+.ui-details p {
+    font-weight: 300;
+}
+
+
+
+.card .btn-view {
+    background: linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -webkit-linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -moz-linear-gradient(to bottom, #0065ae, #00b7f1);
+    background: -o-linear-gradient(to bottom, #0065ae, #00b7f1);
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+footer .github-logo {
+    display: block;
+    text-align: center;
+}
+
+.github-logo img {
+    width: 80px;
+}
+
+/* ======== Media Queries ======== */
+@media (max-width: 1090px) {
+    .container {
+        padding: 0 3rem;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 410px) {
+    .container {
+        padding: 0 1rem;
+    }
+    article.content > .container {
+        padding: 0 2rem;
+    }
+}
+
+@media (max-width: 330px) {
+    .heading {
+        font-size: 1.5rem;
+    }
+
+
+}
+
+/*STRM*/
+
+
+
+.create-event-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: blue;
+    font-size: 23px;
+    margin-left: 70px;
+    display: flex;
+    align-items: center;
+}
+
+p
+.create-event-btn:hover {
+    color: #555; /* Change the color to match your design */
+}
+
+
+.header h1 {
+    color: #1877f2;
+}
+
+
+#open-modal span {
+    margin-right: 10px;
+}
+
+
+
+#image-preview {
+    display: block;
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-left: 100px;
+    width: 250px;
+
+}
+
+
+#image-preview1 {
+    display: block;
+    border-radius: 12px;
+    height: 180px;
+    object-fit: cover;
+    margin-left: 100px;
+    width: 250px;
+
+}
+
+
+/*#image-preview1 {
+    display: block; !* Ensures it's a block-level element *!
+    max-width: 300px;
+    height: 200px;
+    margin-left: 130px; !* Center horizontally with added space *!
+    width: 200px; !* Adjust the width to your desired square size *!
+    border-radius: 10px; !* Adjust the border radius as needed *!
+    border: 2px solid black; !* Add a border and adjust properties as needed *!
+}*/
+
+@media (max-width: 768px) {
+    .container {
+        max-width: 90%;
+    }
+}
+
+
+.form-body img {
+    width: 100px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-title {
+    margin: 0;
+}
+
+.close {
+    font-size: 1.5rem;
+    cursor: pointer;
+    border: none;
+}
+
+
+
+
+
+
+/* Dropdown Container */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Adjust the icon color and size */
+/*.dropbtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: white; !* Adjust color as needed *!
+}*/
+
+/*.dropbtn {
+    background-color: black; !* Set the background color *!
+    border: 1px solid black; !* Add a solid border *!
+    cursor: pointer;
+    width: 10px; !* Set width for square shape *!
+    height: 30px; !* Set height for square shape *!
+    display: flex; !* Center the icon *!
+    align-items: center; !* Center the icon vertically *!
+    justify-content: center; !* Center the icon horizontally *!
+    padding: 0; !* Remove any default padding *!
+    color: white; !* Set icon color *!
+    border-radius: 10px; !* Add border radius for rounded corners *!
+}*/
+
+.dropbtn {
+    background-color: grey; /* Set the background color to grey */
+    border: 1px solid grey; /* Add a solid border with the same grey color */
+    cursor: pointer;
+    width: 30px; /* Adjust the width to make it square */
+    height: 30px; /* Adjust the height to make it square */
+    display: flex; /* Center the icon */
+    align-items: center; /* Center the icon vertically */
+    justify-content: center; /* Center the icon horizontally */
+    padding: 0; /* Remove any default padding */
+    color: white; /* Set icon color */
+    border-radius: 5px; /* Add border radius for slightly rounded corners */
+    transition: background-color 0.3s, border-color 0.3s; /* Add transition for smooth color change */
+}
+
+.dropbtn:hover {
+    background-color: #FC3; /* Change background color to yellow on hover */
+    border: 1px solid #FC3; /* Change border color to yellow on hover */
+    color: black; /* Change icon color to black on hover */
+}
+
+
+.dropbtn i {
+    color: white; /* Ensure the icon is visible */
+    font-size: 24px; /* Adjust icon size as needed */
+}
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #0b1015; /* Adjust background color */
+    min-width: 80px;
+    z-index: 1;
+    border-radius: 8px; /* Add border radius */
+}
+
+/* Links inside the dropdown */
+.dropdown-content button {
+    color: white; /* Adjust color as needed */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+
+
+
+/* Position the dropdown icon over the image preview */
+.card {
+    position: relative;
+}
+.dropdown-img{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+}
+
+
+.ui-preview {
+    position: relative;
+    z-index: 1; /* Ensure the image is behind the icon */
+}
+
+
+
+
+

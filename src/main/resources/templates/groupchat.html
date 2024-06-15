@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Group Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/83cece50f1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/groupchat.css}">
+    <link rel="stylesheet" th:href="@{/static/assets/css/style.css}">
+    <link rel="stylesheet" href="../static/assets/css/search.css">
+    <link rel="stylesheet" href="../static/assets/css/group.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/comment.css}">
+    <link rel="stylesheet" href="../static/assets/css/loader.css">
+
+    <title>Chat Application</title>
+    <style>
+        .emoji-selector.active {
+  bottom: 14%;
+  opacity: 1;
+  pointer-events: all;
+}
+        .emoji-selector {
+  background-color: white;
+  border-radius: 1rem;
+  cursor: default;
+  display: block;
+  padding: 0;
+  border: 1px solid #eee;
+  position: absolute;
+  bottom: 0%;
+  width: 325px;
+  height: 350px;
+  z-index: 5;
+  opacity: 0;
+  pointer-events: none;
+  overflow: auto;
+  transition: bottom 0.3s ease, opacity 0.3s ease;
+}
+   .emoji-list {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0 1rem 1rem;
+  border-radius: 0;
+}
+        .emoji-photo{
+        font-size:1.5rem;
+        }
+        .menu-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.menu {
+    display: none;
+    position: relative;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+}
+
+.menu.visible {
+    display: block;
+}
+
+.menu div {
+    padding: 10px;
+    cursor: pointer;
+}
+
+.menu div:hover {
+    background-color: #f1f1f1;
+}
+        #GroupUserList {
+            width: 130%;
+            max-width: 130%;
+        }
+        .styled-button {
+            width: 36px;
+            height: 35px;
+            background-color: transparent;
+            border: none;
+            background-image: url(/static/assets/images/Sent.svg);
+            background-size: cover;
+            margin-top: 7px;
+            margin-right: 10px
+        }
+        #fileButton {
+            width: 42px;
+            height: 42px;
+            background-color: transparent;
+            border: none;
+            background-image: url(/static/assets/images/upload-photo.svg);
+            background-size: cover;
+            text-indent: -9999px;
+            margin-top: 5px;
+            margin-left: 22px;
+        }
+        #recordButton {
+            width: 39px;
+            height: 39px;
+            background-color: transparent;
+            border: none;
+            background-image: url(/static/assets/images/Voice.svg);
+            background-size: cover;
+            text-indent: -9999px;
+            margin-top: 6px;
+
+        }
+        .message-time{
+        margin-bottom:20px;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{layouts/menu::menu}"></div>
+<div class="dat" id="dat">
+    <div class="main-div">
+        <div class="loader-icon1 loader"></div>
+        <div class="loader-icon2 loader"></div>
+        <div class="loader-icon3 loader"></div>
+        <div class="text">DAT</div>
+    </div>
+</div>
+<div class="container">
+    <div th:replace="~{layouts/left-sidebar::left-sidebar}" style="position: sticky !important;"></div>
+    <div class="main-content" style="flex-basis: 170%;margin-left: 15%;">
+
+
+        <div class="users-list">
+            <div class="users-list-container">
+                <h2 style="margin-left:18%;font-family: Math;font-weight: bold;font-size: 27px;">Your Groups </h2>
+                <input type="hidden" th:value="${user.id}" id="id1">
+                <input type="hidden" th:value="${user.name}" id="name">
+                <ul id="connectedUsers" style="margin-top: 20px;">
+                </ul>
+            </div>
+            <div>
+                <p id="connected-user-fullname"></p>
+            </div>
+        </div>
+
+
+        <div class="chat-container" id="chat-page">
+
+
+
+            <div class="chat-area">
+                <div class="chat-area" id="chat-messages">
+                </div>
+                <input type="file" id="editFileInput" style="display: none;" accept="image/*,video/*">
+
+                <form id="messageForm" name="messageForm" class="hidden">
+                    <div class="message-input">
+                        <input autocomplete="off" type="text" id="message" placeholder="Type your message...">
+                        <input type="file" id="fileInput" accept="image/*" style="display: none;">
+
+                        <button class="styled-button"></button>
+
+<!--                        <button>➤</button>-->
+<!--                        <button type="button" id="fileButton">📷</button>-->
+                        <button type="button" id="fileButton"></button>
+
+                        <ul class="utility-group">
+                            <li class="emoji-selector" id="emojiSelector" >
+                                <div class="input-container">
+                                    <input id="emojiSearch" type="text" name=""  placeholder="Search...">
+                                </div>
+                                <ul id="emojiList" class="emoji-list">
+                                </ul>
+                            </li>
+                            <li id="emojiSelectorIcon"><img src="/static/assets/images/Emoji-EE.svg" alt="" style="width: 43px;margin-top: 4px;"></li>
+                        </ul>
+<!--                        <button type="button" id="recordButton">🎙️</button>-->
+                        <button type="button" id="recordButton">🎙</button>
+
+                    </div>
+                </form>
+            </div>
+            <div class="members-list">
+                <div class="users-list-container" style="overflow-y:hidden ;">
+                    <ul id="GroupUserList">
+                    </ul>
+                </div>
+                <div>
+                    <p id=""></p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script th:src="@{/static/assets/js/groupchat.js}" crossorigin="anonymous"></script>
+<script th:src="@{/static/assets/js/noti-user-profile.js}" crossorigin="anonymous"></script>
+<script>
+    // Hide the overlay after 3 seconds
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const dat = document.getElementById('dat');
+            dat.style.opacity = '0';
+            dat.style.pointerEvents = 'none';
+            setTimeout(() => {
+                dat.style.display = 'none';
+            }, 500); // Match the transition duration
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>

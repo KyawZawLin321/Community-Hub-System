@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style >
+
+    .footer {
+        background-color: #f8f9fa;
+        padding: 10px;
+        text-align: center;
+        height: 1000px;
+    }
+
+</style>
+<body>
+<div class="footer-wrapper">
+    <div class="footer" th:fragment="footer" style="bottom: 0; width: 100%;position:absolute;">
+        <p>Copyright 2023</p>
+    </div>
+</div>
+<script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

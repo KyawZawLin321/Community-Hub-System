@@ -1,0 +1,1575 @@
+<!DOCTYPE>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile</title>
+    <script src="https://kit.fontawesome.com/83cece50f1.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tributejs@5.1.3/dist/tribute.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-RtBldP9ZDwi7nvWu/4+8RjEDGa6hKmu3zCWwl3v4Kc8I2Dv8O1UIzWhGnIHZuGOq6hTPJx0+0R3LdTNiPFKZDA==" crossorigin="anonymous" />
+
+
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" th:href="@{/static/assets/css/style.css}">
+    <link rel="stylesheet" th:href="@{/static/assets/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/static/assets/css/button.css}">
+    <link rel="stylesheet" th:href="@{/static/assets/css/home.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/poll.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/comment.css}">
+    <link rel="stylesheet" href="../../static/assets/css/search.css">
+    <link rel="stylesheet" href="../static/assets/css/dropdown.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/assets/css/poll-buttom.css}">
+    <link rel="stylesheet" href="../static/assets/css/loader.css">
+
+
+    <style>
+
+        /*.uploaded-photos {*/
+        /*    gap: 14px;*/
+        /*!*    display: block;*!*/
+        /*!*    max-width: 100%;*!*/
+        /*!*    max-height: 150px;*!*/
+        /*!*    object-fit: cover;*!*/
+        /*!*    width: 131px;*!*/
+        /*}*/
+        .uploaded-item {
+            width: 120px; /* Adjust as needed */
+            height: 100px; /* Adjust as needed */
+            object-fit: cover; /* Ensures the aspect ratio is maintained */
+        }
+        .uploaded-item {
+            margin: 3.5px;
+            max-width: 200px;
+        }
+        .uploaded-item-container {
+            position: relative;
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        /* Modal container */
+        #image-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.42); /* Black with opacity */
+            transition: opacity 0.3s ease; /* Fade transition */
+            opacity: 0; /* Initially hidden */
+        }
+
+        #image-modal1 {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.42); /* Black with opacity */
+            transition: opacity 0.3s ease; /* Fade transition */
+            opacity: 0; /* Initially hidden */
+        }
+
+        /* Close button */
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+
+        /*.uploaded-photos {*/
+        /*    width: 112px;*/
+        /*}*/
+        td {
+            background: #efefef;
+        }
+
+        @import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+
+        #groupId2 {
+            appearance: none; /* Remove default arrow */
+            -webkit-appearance: none; /* For older versions of Chrome and Safari */
+            -moz-appearance: none; /* For older versions of Firefox */
+            padding: 5px 10px; /* Add padding for better appearance */
+            background-color: #ffffff; /* Set background color for non-image options */
+            background-repeat: no-repeat;
+            background-position: left center;
+        }
+
+        #groupId2 option {
+            padding-left: 25px; /* Add padding for the text */
+        }
+
+        #groupId2 option[data-thumbnail] {
+            background-image: url(attr(data-thumbnail)); /* Use 'attr' to access custom data attribute */
+            background-size: 20px 20px; /* Adjust as needed */
+        }
+
+
+        :root {
+            --background-color: #a5bfd4;
+            --header-color: #6a96d8;
+            --send-color: #e6edf6;
+            --received-color: #f2f2f2;
+            --blocked-color: #ffc1c1;
+            --light-gray: #dfdfdf;
+            --dark-gray: #858a91;
+        }
+
+
+        .btn {
+            opacity: 0.7;
+        }
+
+        .btn:hover {
+            opacity: 1;
+        }
+
+
+        .head-container h1 {
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .head-container img {
+            width: 30px;
+        }
+
+        .head-container a {
+            text-decoration: none;
+        }
+
+
+        .message-container h3 {
+            color: var(--light-gray);
+            border-bottom: 1px solid var(--light-gray);
+            text-align: center;
+            line-height: 0.1rem;
+            margin: 10px 0 30px;
+            text-transform: uppercase;
+            font-size: 1rem;
+        }
+
+        .message-container h3 span {
+            padding: 0 15px;
+            background-color: #fff;
+        }
+
+        .message-container div.sent {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .message-container div:not(.sent) {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .message-container div:last-child {
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .message-container .hour {
+            color: var(--dark-gray);
+        }
+
+        .message-container p {
+            position: relative;
+        }
+
+        /* BUBBLE ARROW SENT */
+        .sent p:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 0px;
+            height: 0px;
+            border-top: 0px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-right: 10px solid var(--send-color);
+        }
+
+        /* BUBBLE ARROW RECEIVED */
+        .received p:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -6px;
+            width: 0px;
+            height: 0px;
+            border-top: 0px solid transparent;
+            border-bottom: 20px solid transparent;
+            border-left: 10px solid var(--received-color);
+        }
+
+        .sent-bubble {
+            background-color: var(--send-color);
+        }
+
+
+        .input-container input {
+            width: 100%;
+            outline: none;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .input-container a {
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--header-color);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-left: 20px;
+        }
+
+
+        li {
+            list-style-type: none;
+
+        }
+
+
+        article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
+            display: flex;
+        }
+
+
+        .btn:hover {
+            color: white;
+            background-color: rgb(53, 179, 208);
+            border: none;
+        }
+
+        .comment {
+            z-index: 1000;
+        }
+
+        .answer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+
+        .poll-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .poll-container form {
+            margin-bottom: 20px;
+        }
+
+
+        /*Spinner loading start*/
+        @keyframes l7 {
+            to {
+                transform: rotate(.5turn);
+            }
+        }
+
+        /*.spinner-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1000;
+            display: none;
+        }
+*/
+
+        .spinner-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px; /* Adjust width as needed */
+            height: 200px; /* Adjust height as needed */
+            background-color: #FEFDED; /* Slightly opaque white background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 10px; /* Rounded corners for better aesthetics */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a slight shadow for depth */
+            z-index: 1000;
+            display: none;
+        }
+
+        .spinner {
+            width: 50px;
+            aspect-ratio: 1;
+            --_c: no-repeat radial-gradient(farthest-side, #25b09b 92%, #0000);
+            background: var(--_c) top,
+            var(--_c) left,
+            var(--_c) right,
+            var(--_c) bottom;
+            background-size: 12px 12px;
+            animation: l7 1s infinite;
+        }
+
+        .uploading-text {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        /*Spinner Loading end*/
+        @keyframes tremble {
+            0% { transform: rotate(-2deg); }
+            25% { transform: rotate(2deg); }
+            50% { transform: rotate(-2deg); }
+            75% { transform: rotate(2deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Apply the animation on hover */
+        .btn-add-option12:hover {
+            transform: scale(0.95);
+        }
+
+        .poll {
+            width: 540px;
+            margin-top: 40px;
+            background: #ffffff;
+            border-radius: 7px;
+            border: 1px solid gray;
+            box-shadow: -2px -2px 5px #00000040, 3px 3px 7px #00000040;
+            padding: 20px;
+        }
+
+    </style>
+
+</head>
+<body>
+<div th:replace="~{layouts/menu::menu}"></div>
+<div class="dat" id="dat">
+    <div class="main-div">
+        <div class="loader-icon1 loader"></div>
+        <div class="loader-icon2 loader"></div>
+        <div class="loader-icon3 loader"></div>
+        <div class="text">DAT</div>
+    </div>
+</div>
+<div class="container">
+    <div th:replace="~{layouts/left-sidebar::left-sidebar}"></div>
+    <input type="hidden" th:value="${user.id}" id="id1">
+
+
+<!--    <div class="modal fade" id="fullSizeImageModal" tabindex="-1" aria-hidden="true">-->
+<!--        <div class="modal-dialog modal-dialog-centered modal-lg"> &lt;!&ndash; Added modal-lg for larger size &ndash;&gt;-->
+<!--            <div class="modal-content" style="margin-left: -24px;width: 800px;">-->
+<!--                <div class="modal-body p-0">-->
+<!--                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close" style="background-color: white"></button>-->
+<!--                    <img id="fullSizeImage" src="" alt="Full Size Image" class="w-100" style="height: 500px;">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+    <div class="modal fade" id="fullSizeImageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <!-- Added modal-lg for larger size -->
+            <div class="modal-content" style="margin-left: -24px;width: 800px;">
+                <div class="modal-body p-0 position-relative">
+                    <button type="button" class="btn-close position-absolute top-0 end-0 m-2" data-bs-dismiss="modal" aria-label="Close" style="background-color: white"></button>
+                    <img id="fullSizeImage" src="" alt="Full Size Image" class="w-100" style="height: 500px;">
+                    <button id="downloadImageBtn" class="btn btn-primary position-absolute bottom-0 end-0 m-2" style="background-color: rgba(255, 255, 255, 0.7); border: none; padding: 10px 20px;"><i class="fas fa-download" style="color:black;"></i> </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="profile-wrapper" style="margin-left:90px;margin-top:97px;">
+
+        <div class="stream-post profile-card"
+             style="margin-left: 238px;margin-top:2.5%;border-radius: 14px;box-shadow: 13px 13px 8px grey;background-color: white;height: 665px;">
+<!--            height: 646px;-->
+            <div class="profile-section-user" style="width: 452px;">
+                <div class="profile-cover-img">
+                    <img class="coverphoto" src="" alt="" onclick="openCoverModel(this)" title="Update Cover Profile"
+                         id="coverPhoto"></div>
+
+                <div class="profile-info-brief p-3 ">
+
+                    <img class="img-fluid user-profile-avatar " src="" alt="UserPhoto"
+                         onclick="openUploadImageModal(this)" title="Update Profile" id="photo">
+                    <div class="text-center" style="display: flex;flex-direction: row;margin-left: 70px;">
+
+                        <h5 class="text-uppercase mb-4" id="name" style="margin-left: 57px;"></h5>
+
+                        <h6 class="UserInfo" style="margin-left:26%;margin-bottom:-17px;margin-top:-19%;"></h6>
+
+                    </div>
+
+                </div>
+                <h3 style="color:red;display:none;"  id="error-message1"  th:text="${error}"></h3>
+
+                <div style="display:flex;margin-bottom:52px;" class="nav nav-tabs row" id="nav-tab" role="tablist">
+                    <!-- Change Password Button -->
+                    <button class="nav-link mb-3 col-6 col-md-4" data-bs-toggle="modal" data-bs-target="#changePasswordModal" type="button" role="tab" aria-controls="nav-password" aria-selected="false" style="padding-right:9px;background-color: #369;color: white;border-bottom-left-radius: 6px;border-bottom-right-radius: 6px;margin-left: 155px;margin-top: -20px;">
+                        Change Password
+                    </button>
+
+                </div>
+
+                <!-- /.profile-info-brief -->
+
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" style="margin-top: 4%;" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                        <div class="profile-info-contact" style="margin-top:-9%;">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <td><strong>EMAIL:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="email" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>DepartMent:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="department" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Team:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="team" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Interest:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="interest" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Skill:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="skillOptionsContainer" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Biography:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="biography" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Date Of Birth:</strong></td>
+                                    <td>
+                                        <p class="text-muted mb-0 px-5" id="dob" style="margin-left:5.5%;"></p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade" style="margin-top: 4%;" id="nav-password" role="tabpanel" aria-labelledby="nav-password-tab">
+                        <div class="profile-info-contact" style="margin-top:-9%;">
+                           <!-- <form th:action="@{/changepassword-profile}" method="post" autocomplete="off" th:object="${user}">
+                                <input type="password"  placeholder="Enter Current Password" th:field="*{password}" >
+                                <input type="password"  placeholder="Enter New Password" th:field="*{newPassword}" >
+                                <input type="password" placeholder="Confirm Password"  th:field="*{confirmPassword}" >
+                                <button  type="submit">Submit</button>
+                            </form>-->
+                        </div>
+                    </div>
+                </div>
+                <!--Change password Modal box-->
+                <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-labelledby="changePasswordModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" style="background-color: #369;color: white">
+                                <h5 class="modal-title" id="changePasswordModalLabel" >Change Password</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="closeModal()">
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="changePasswordForm" th:action="@{/changepassword-profile}" method="post" autocomplete="off" th:object="${user}">
+                                    <div class="mb-3 position-relative">
+                                        <input type="password" class="form-control pr-5" id="currentPassword" placeholder="Current Password" th:field="*{password}">
+                                        <button class="btn position-absolute end-0 top-50 translate-middle-y" type="button"  id="toggleCurrentPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <span id="currentPasswordError" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3  position-relative" >
+                                        <input type="password" class="form-control pr-5" id="newPassword" placeholder="New Password" th:field="*{newPassword}">
+                                        <button class="btn position-absolute end-0 top-50 translate-middle-y" type="button" id="toggleNewPassword" style="border:none; ">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <span id="newPasswordError" class="text-danger"></span>
+                                    </div>
+                                    <div class="mb-3 position-relative">
+                                        <input type="password"class="form-control pr-5" id="confirmPassword" placeholder="Confirm Password" th:field="*{confirmPassword}">
+                                        <button class="btn position-absolute end-0 top-50 translate-middle-y" type="button"  id="toggleConfirmPassword">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <span id="confirmPasswordError" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="d-flex justify-content-between" style="margin-left: 300px">
+
+                                        <div>
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Change</button>
+                                        </div></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.profile-section-user -->
+        <div class="profile-section-main" style="margin-left: 40px;margin-top: 30px;height: 750px;overflow-y: auto; scrollbar-width: none;" >
+            <div class="form-body">
+                <div class="form-submit" data-target="#form-submit" style="height:50px;box-shadow: 0 8px 16px rgb(77 83 94);">
+                    <p style="font-family: math;font-size: 118%;margin-top: 12px;">What's happen?</p>
+                </div>
+                <button type="button" class="btn btn-split btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModalPoll">
+                    Create Poll
+                </button>
+            </div>
+                <audio id="voteSound">
+                    <source src="../static/assets/audio/hey-hey-boy-meme.mp3" type="audio/mpeg">
+                </audio>
+            <div class="appendContent" style="margin-left:63px;"> </div>
+
+            <!--                <div id="pollList" class="poll-list"></div>-->
+        </div>
+        <!-- /.profile-section-main -->
+    </div>
+
+
+
+
+    <!-- Update Profile Image  -->
+    <div class="modal fade" id="updateUserImageModel">
+        <div class="modal-dialog">
+            <div class="modal-content pb-1 py-1 px-4">
+                <div class="modal-header">
+                    <h1 align="center" class="modal-title fs-5 fw-3" style="color: #369;margin-left: 19%;"
+                        id="staticBackdropLabel">Update User Profile Photo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+
+
+                <div class="mb-3">
+                    <img id="image-preview-profile">
+                    <label for="file" style="color: #369;" class="col-form-label">Upload User Profile Photo</label>
+                    <input type="file" class="form-control" id="file" name="file" accept="image/*"
+                           onchange="previewImageProfile(event)">
+                    <span id="fileError" class="text-danger"></span>
+                </div>
+
+                <div class="btnGp d-flex modal-footer">
+                    <input type="hidden" id="updateImageStaffId"/>
+                    <input type="button" data-bs-dismiss="modal"
+                           class="modalBtn btn btn-outline-danger col me-2" value="Cancel">
+                    <input type="submit" class="modalBtn btn btn-success col "
+                           id="btn-image" value="Update">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update Cover Profile Image  -->
+    <div class="modal fade" id="updateUserCoverModel">
+        <div class="modal-dialog">
+            <div class="modal-content pb-1 py-1 px-4">
+                <div class="modal-header">
+                    <h1 align="center" class="modal-title fs-5 fw-3" style="color: #369;margin-left: 19%;"
+                        id="">Update User Cover Photo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+
+                <div class="mb-3">
+                    <img id="image-preview-cover">
+                    <label for="file" style="color: #369;" class="col-form-label">Upload User Cover Photo</label>
+                    <input type="file" class="form-control" id="cover" name="file" accept="image/*"
+                           onchange="previewImageCover(event)">
+                    <span id="coverError" class="text-danger"></span>
+                </div>
+
+
+                <div class="btnGp d-flex modal-footer">
+                    <input type="button" data-bs-dismiss="modal"
+                           class="modalBtn btn btn-outline-danger col me-2" value="Cancel">
+                    <input type="submit" class="modalBtn btn btn-success col "
+                           id="btn-cover" value="Update">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Update User Info-->
+    <div class="modal fade" id="updateUserinfo">
+        <div class="modal-dialog">
+            <div class="modal-content p-3">
+                <div class="modal-header">
+                    <h1  class="modal-title fs-5 fw-3" id="" style="margin-left: 30%;color: #369">Update User Info</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <form class="was-validated" id="userInfo">
+                    <div class="mb-3">
+                        <div class="mb-3">
+                            <label class="form-label" style="color:#369">Name </label> <input
+                                type="text" class="form-control"
+                                id="updateName" name="name" placeholder="Enter Username" required="required"/>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" style="color:#369">DOB</label>
+                            <input type="date" class="form-control" name="dob" id="updateDob" required="required"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="updateInterest" class="form-label" style="color:#369">Interest</label>
+                            <select class="form-select" name="interest" id="updateInterest" required="required">
+                                <option value="Web Development">Web Development</option>
+                                <option value="Mobile App Development">Mobile App Development</option>
+                                <option value="Data Science">Data Science</option>
+                                <option value="Artificial Intelligence">Artificial Intelligence</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div id="optionsContainer12">
+                            <!-- Options will be dynamically added here -->
+                            <div class="mb-3 option-item">
+                                <button type="button" class="btn btn-danger btn-remove-option"
+                                        aria-label="Remove option" style="margin-left: 429px;margin-top: -38px;">&times;
+                                </button>
+                                <input type="text" class="form-control option-input" placeholder="Enter Your Skill">
+                            </div>
+                        </div>
+<!--                        <button type="button" class="btn btn-primary btn-add-option12">Add Skill</button>-->
+<!--                        <button type="button" class="btn-add-option12" style=" color: black; padding: 5px 10px;border-color: #368;border-radius: 5px;">-->
+<!--                            <img src="/static/assets/images/AddSkill.svg" alt="cam" style="width: 28px; height: 28px; margin-right: 5px;"> &lt;!&ndash; SVG image &ndash;&gt;-->
+<!--                            Add Skill-->
+<!--                        </button>-->
+                        <button type="button" class="btn-add-option12" style="color: #369; padding: 4px 12px; border: 2px solid #369; border-radius: 6px; box-shadow: 0px 2px 4px rgb(0 0 0 / 69%);margin-bottom: 20px;font-size: 17px;font-weight: 500;">
+                            <img src="/static/assets/images/AddSkill.svg" alt="cam" style="width: 28px; height: 28px; margin-right: 5px;"> <!-- SVG image -->
+                            Add Skill
+                        </button>
+
+
+
+                        <div class="mb-3">
+                            <label class="form-label" style="color:#369">Bio</label>
+                            <textarea
+                                    class="form-control"
+                                    id="updateBio" name="biography" placeholder="Enter Your Biography"
+                                    required="required">
+                            </textarea>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="btnGp row mb-3">
+                        <input type="button" data-bs-dismiss="modal"
+                               class="modalBtn btn btn-outline-danger col me-2 ms-3" value="Cancel">
+                        <input type="submit" class="modalBtn btn btn-success col me-3" value="Update" id="user-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEW POST modal Start -->
+    <div class="overlay"></div>
+    <div class="comment">
+        <div class="comment-box" style="margin-left: 509px;width: 590px;margin-top: 131px;">
+            <div class="comment-header">
+                <h3>Create Post</h3>
+                <i class="fas fa-times"></i>
+            </div>
+            <form id="userForm">
+                <input type="hidden" value="0" id="groupId">
+                <div class="comment-body">
+                    <textarea name="post-body" placeholder="Write anything before submitting to the post bar" id="text" class="mentionable-textarea"></textarea>
+                    <div class="uploaded-photos" ></div>
+
+                    <div id="image-modal" class="image-modal">
+                        <span class="close-modal" style="margin-right: 342px;margin-top: 101px;z-index: 99"><i class="fa-solid fa-circle-xmark" style="color: #FFFFFF;"></i></span>
+                        <img class="modal-content" id="full-image">
+                    </div>
+
+                </div>
+                <div class="comment-bottom">
+                    <div class="icon">
+                        <label for="multipartFile">
+                            <i class="fas fa-photo-video"></i>
+                            <input type="file" name="multipartFile" id="multipartFile" accept="image/*, video/*" multiple>
+                        </label>
+                        <!--                                    <select id="isPublic">-->
+                        <!--                                        <option value="public"><i class="fa-solid fa-earth-americas fa-lg" style="color: #000000;"></i>Public</option>-->
+                        <!--                                        <option value="private"><i class="fa-solid fa-lock" style="color: #000205;"></i>Private</option>-->
+                        <!--                                    </select>-->
+                        <!--                                    <select id="isPublic" class="icon-select">-->
+                        <!--                                        <option value="public" class="fa fa-earth-americas" > &#xf57d; Public</option>-->
+                        <!--                                        <option value="private" class="fa fa-lock" > &#xf023; Private</option>-->
+                        <!--                                    </select>-->
+                        <div class="custom-select-container">
+                            <div class="custom-select" id="customSelect">
+                                <i class="fas fa-earth-americas"></i> <span>Public</span>
+                            </div>
+                            <div class="custom-options" id="customOptions">
+                                <div data-value="public">
+                                    <i class="fas fa-earth-americas"></i> <span>Public</span>
+                                </div>
+                                <div data-value="private">
+                                    <i class="fas fa-lock"></i> <span>Private</span>
+                                </div>
+                            </div>
+                        </div>
+                        <select id="isPublic" class="icon-select">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                        <div id="error-message" style="color: red; display: none;"></div>
+
+                        <div class="button-send" style="background-color:rgb(205, 206, 208)">
+                            <button type="button" id="submitButton" class="submitButton" style="border: none;background-color: rgb(205, 206, 208);font-size: 125%;font-family: Math">Create</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- Spinner Container -->
+    <div id="loading-spinner" class="spinner-container" style="display: none;">
+        <div class="spinner"></div>
+        <div class="uploading-text">Uploading, please wait...</div>
+    </div>
+    <!-- post create modal end-->
+
+    <!-- start post update -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 131px;width: 590px;margin-left: -86px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="font-family: Math">Post Edit</h1>
+                    <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e0f4f5;">
+                    <form>
+                        <input type="hidden" id="groupId1">
+                        <input type="hidden" id="id">
+                        <div class="comment-body">
+                            <textarea name="post-body" placeholder="Write anything before submitting to the post bar" id="text1"></textarea>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="photo" class="form-label" style="font-family: Math">Images</label>
+                            <div id="photo6"  style=" max-height: 110px;overflow-y: auto;scrollbar-width: none;" ></div>
+                        </div>
+                        <div class="mb-3" >
+                            <label for="video" class="form-label" style="font-family: Math;">Videos</label>
+                            <div id="video"   style=" max-height: 110px;overflow-y: auto;scrollbar-width: none;"></div>
+                        </div>
+                        <div class="uploaded-photos" style="max-height: 212px"></div>
+
+                        <div id="image-modal1" class="image-modal">
+                            <span class="close-modal" style="margin-right: 342px;margin-top: 91px;z-index: 99"><i class="fa-solid fa-circle-xmark" style="color: #FFFFFF;"></i></span>
+                            <img class="modal-content" id="full-image1">
+                        </div>
+
+                        <div class="comment-bottom">
+                            <div class="icon">
+                                <label for="multipartFile1">
+                                    <i class="fas fa-photo-video"></i>
+                                    <input type="file"    id="multipartFile1" accept="image/*, video/*" multiple>
+                                </label>
+
+                                <div class="custom-select-container1">
+                                    <div class="custom-select" id="customSelect1">
+                                        <i class="fas fa-earth-americas"></i> <span>Public</span>
+                                    </div>
+                                    <div class="custom-options1" id="customOptions1">
+                                        <div data-value1="public">
+                                            <i class="fas fa-earth-americas"></i> <span>Public</span>
+                                        </div>
+                                        <div data-value1="private">
+                                            <i class="fas fa-lock"></i> <span>Private</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <select id="isPublic1" class="icon-select">
+                                    <option value="public">Public</option>
+                                    <option value="private">Private</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-family: Math">Close</button>
+                    <button type="button" class="btn btn-primary"  id="submitBtn" style="font-family: Math">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end post update modal -->
+
+    <!-- start share modal form -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 131px;width: 590px;margin-left: -86px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel1" style="font-family: Math">Share post</h1>
+                    <button type="button"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e0f4f5;">
+                    <form>
+                        <input type="hidden" id="contentId">
+                        <input type="hidden" id="userId">
+                        <div class="comment-body">
+                            <textarea name="post-body" style="font-family: Math" placeholder="Write Caption" id="caption" class="mentionable-textarea"></textarea>
+                        </div>
+                        <select id="isPublic2" style="height: 36px;margin-left: 7px">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+
+                        <select id="groupId2" style="border-color: black;height: 35px;">
+                        </select>
+
+                        <input type="hidden" id="share" value="1">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="margin-right: 253px;font-family: Math"  id="submitBtn2">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end share create modal end-->
+
+
+    <!--  share modal update 1-->
+    <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 131px;width: 590px;margin-left: -86px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel2" style="font-family: Math">Share Edit</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e0f4f5;">
+                    <form id="updateShareForm">
+                        <input type="hidden" id="groupId3">
+                        <input type="hidden" id="id3">
+                        <input type="hidden" id="contentId3">
+                        <input type="hidden" id="userId3">
+                        <input type="hidden" id="shareUserId3">
+                        <div class="comment-body">
+                            <textarea name="post-body" style="font-family: Math" placeholder="Write Caption" id="caption4"></textarea>
+                        </div>
+                        <select id="isPublic44" style="height: 36px;margin-left: 7px" >
+                            <option value="public">Public</option>
+                            <option value="private">private</option>
+                        </select>
+                        <input type="hidden" id="share4" value="1">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="margin-right: 253px;font-family: Math" id="submitBtn3">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- share modal update end-->
+
+    <!-- kym  poll create start-->
+    <div class="modal fade" id="exampleModalPoll" tabindex="-1" aria-labelledby="exampleModalLabelPoll" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 131px;width: 590px;margin-left: -86px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabelPoll" style="font-family: Math">Create a Poll</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e0f4f5;">
+                    <form id="pollForm">
+                        <input type="hidden" value="0"  id="groupId4">
+                        <div class="mb-3">
+                            <label for="question" class="form-label" style="margin-left: 5px;font-family: Math">Question</label>
+                            <input type="text" class="form-control" id="question" placeholder="Enter your question here..." style="margin-bottom: 26px;height: 58px;font-family: Math">
+                        </div>
+                        <div id="optionsContainer2">
+
+                        </div>
+                        <button type="button" class="btn btn-primary btn-add-option" style="margin-bottom: 25px;font-family: Math" >Add Option</button>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label" style="font-family: Math">End Date</label>
+                            <input type="datetime-local" class="form-control" id="endDate" style="width: 202px">
+                        </div>
+                        <div class="mb-3">
+                            <label for="isPublicPoll" class="form-label" style="font-family: Math">Visibility</label>
+                            <select class="form-select" id="isPublicPoll" style="width: 100px">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-family: Math">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitBtnPoll" style="font-family: Math">Create Poll</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- kym poll create end -->
+
+    <!-- kym poll update form start -->
+
+    <div class="modal fade" id="exampleModalPoll1" tabindex="-1" aria-labelledby="exampleModalLabelPoll1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin-top: 131px;width: 590px;margin-left: -86px">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabelPoll1"  style="font-family: Math">Poll edit</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="background-color: #e0f4f5;">
+                    <form >
+                        <input type="hidden" id="groupId5">
+                        <input type="hidden" id="idOfPoll">
+                        <input type="hidden" id="idOfOptionList">
+
+                        <div class="mb-3">
+                            <label for="question" class="form-label"  style="margin-left: 5px;font-family: Math">Question</label>
+                            <input type="text" class="form-control" id="question1" style="margin-bottom: 26px;height: 58px;font-family: Math" placeholder="Enter your question here...">
+                        </div>
+                        <div id="optionsContainer9">
+                            <!-- Options will be dynamically added here -->
+                        </div>
+                        <button type="button" class="btn btn-primary btn-add-option1" style="margin-bottom: 25px;font-family: Math">Add Option</button>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label" style="font-family: Math">End Date</label>
+                            <input type="datetime-local" class="form-control" id="endDate1" style="width: 202px">
+                        </div>
+                        <div class="mb-3">
+                            <label for="isPublicPoll" class="form-label" style="font-family: Math">Visibility</label>
+                            <select class="form-select" id="isPublicPoll1" style="width: 100px">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" style="font-family: Math">Close</button>
+                    <button type="button" class="btn btn-primary" id="submitBtnPoll1" style="font-family: Math">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- kym  poll update form end -->
+
+
+    <!--Post Delete Modal-->
+    <div class="modal fade" id="deletePostModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin: 250px -43px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePostModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeletePostButton">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="saveModal" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="margin-right: 34.5%;">
+            <div class="modal-content" style="margin: 250px -43px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="saveModalLabel">Confirm Saving</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to save this post?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmSavePostButton">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" style="margin-right: 621px">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="successModalLabel">Success!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Content saved successfully.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Post Delete Modal-->
+    <!--Poll Delete Modal-->
+    <div class="modal fade" id="deletePollModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin: 250px -43px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deletePollModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this poll?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeletePollButton" >Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--poll Delete Modal-->
+    <!--share Delete Modal-->
+    <div class="modal fade" id="deleteShareModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin: 250px -43px">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteShareModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this share?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDeleteShareButton" >Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--share Delete Modal-->
+
+
+
+
+
+    <!-- kym poll option choose create and update start -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const optionsContainer = document.getElementById("optionsContainer2");
+            const addOptionButton = document.querySelector(".btn-add-option");
+            const exampleModalPoll = document.getElementById("exampleModalPoll");
+            const pollForm = document.getElementById("pollForm");
+
+            addOptionButton.addEventListener("click", function () {
+                const optionCount = optionsContainer.querySelectorAll(".option-item").length + 1;
+                const newOptionItem = createOptionItem(optionCount);
+                optionsContainer.appendChild(newOptionItem);
+            });
+
+            optionsContainer.addEventListener("click", function (event) {
+                if (event.target.classList.contains("btn-remove-option")) {
+                    event.target.closest(".option-item").remove();
+                    updateOptionNumbers();
+                }
+            });
+
+            exampleModalPoll.addEventListener('show.bs.modal', function () {
+                resetForm();
+            });
+
+            function createOptionItem(optionCount) {
+                const newOptionItem = document.createElement("div");
+                newOptionItem.classList.add("mb-3", "option-item");
+                newOptionItem.style.marginBottom = '1px !important';
+                newOptionItem.innerHTML = `
+                <input type="text" class="form-control option-input1" placeholder="Option ${optionCount}" style="font-family: Math" required6>
+                <button type="button" class="btn btn-danger btn-remove-option" aria-label="Remove option" style="margin-top: -37px;margin-left: 522px">&times;</button>
+            `;
+                return newOptionItem;
+            }
+
+            function updateOptionNumbers() {
+                const optionItems = optionsContainer.querySelectorAll(".option-item");
+                optionItems.forEach((item, index) => {
+                    const input = item.querySelector(".option-input1");
+                    input.placeholder = `Option ${index + 1}`;
+                });
+            }
+
+            function resetForm() {
+                pollForm.reset();  // Reset all form fields
+                optionsContainer.innerHTML = '';
+                optionsContainer.appendChild(createOptionItem(1));
+                optionsContainer.appendChild(createOptionItem(2));
+            }
+
+            // Initial options
+            // resetOptions();
+            resetForm();
+
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const optionsContainer = document.getElementById("optionsContainer9");
+            const addOptionButton = document.querySelector(".btn-add-option1");
+
+            addOptionButton.addEventListener("click", function () {
+                const optionCount = optionsContainer.querySelectorAll(".option-item").length + 1;
+                const newOptionItem = createOptionItem(optionCount);
+                optionsContainer.appendChild(newOptionItem);
+            });
+
+            optionsContainer.addEventListener("click", function (event) {
+                if (event.target.classList.contains("btn-remove-option")) {
+                    const parentOptionItem = event.target.closest(".option-item");
+                    if (parentOptionItem.classList.contains("new-option")) {
+                        parentOptionItem.remove();
+                        updateOptionNumbers();
+                    } else {
+                        console.log("Old options cannot be removed.");
+                    }
+                }
+            });
+
+            function createOptionItem(optionCount) {
+                const newOptionItem = document.createElement("div");
+                newOptionItem.classList.add("mb-3", "option-item", "new-option");
+                newOptionItem.innerHTML = `
+                <input type="text" class="form-control option-input2" placeholder="Option ${optionCount}" style="font-family: Math">
+                <button type="button" class="btn btn-danger btn-remove-option" aria-label="Remove option" style="margin-top: -37px;margin-left: 522px">&times;</button>
+            `;
+                return newOptionItem;
+            }
+
+            function updateOptionNumbers() {
+                const optionItems = optionsContainer.querySelectorAll(".option-item");
+                optionItems.forEach((item, index) => {
+                    const input = item.querySelector(".option-input2");
+                    input.placeholder = `Option ${index + 1}`;
+                });
+            }
+
+
+            //swm
+            const tribute = new Tribute({
+                values: (text, cb) => {
+                    fetch(`/user/search?q=${text.replace(/\s+/g, '')}`)
+                        .then(response => response.json())
+                        .then(users => {
+                            if (users.length === 0) {
+                                cb([]);
+                            } else {
+                                cb(users.map(user => ({
+                                    key: user.key,
+                                    value: user.value,
+                                    userId: user.userId
+                                })));
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching user data:', error);
+                            cb([]);
+                        });
+                },
+                selectTemplate: function(item) {
+                    if (typeof item === 'undefined') return null;
+                    return `@${item.original.value}`;
+                },
+                menuItemTemplate: function(item) {
+                    return `<li data-user-id="${item.original.userId}">@${item.original.value}</li>`;
+                }
+            });
+
+            const postCreateTextarea = document.getElementById('text');
+            tribute.attach(postCreateTextarea);
+
+
+            const shareCaptionTextarea = document.getElementById('caption');
+            tribute.attach(shareCaptionTextarea);
+        });
+    </script>
+    <!-- kym  poll option choose create and update end -->
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const optionsContainer = document.getElementById("optionsContainer12");
+        const addOptionButton = document.querySelector(".btn-add-option12");
+
+        addOptionButton.addEventListener("click", function () {
+            const optionCount = optionsContainer.querySelectorAll(".option-item").length + 1;
+            const newOptionItem = createOptionItem(optionCount);
+            optionsContainer.appendChild(newOptionItem);
+        });
+
+        optionsContainer.addEventListener("click", function (event) {
+            if (event.target.classList.contains("btn-remove-option")) {
+                event.target.closest(".option-item").remove();
+                updateOptionNumbers();
+            }
+        });
+
+        function createOptionItem(optionCount) {
+            const newOptionItem = document.createElement("div");
+            newOptionItem.classList.add("mb-3", "option-item");
+            newOptionItem.innerHTML = `
+    <input type="text" class="form-control option-input" placeholder="Option ${optionCount}">
+    <button type="button" class="btn btn-danger btn-remove-option" aria-label="Remove option">&times;</button>
+`;
+            return newOptionItem;
+        }
+
+        function updateOptionNumbers() {
+            const optionItems = optionsContainer.querySelectorAll(".option-item");
+            optionItems.forEach((item, index) => {
+                const input = item.querySelector(".option-input");
+                input.placeholder = `Option ${index + 1}`;
+            });
+        }
+    });
+</script>
+
+<script>
+    document.getElementById('customSelect').addEventListener('click', function() {
+        const options = document.getElementById('customOptions');
+        options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.querySelectorAll('.custom-options div').forEach(function(option) {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value');
+            const select = document.getElementById('isPublic');
+            const display = document.getElementById('customSelect');
+
+            select.value = value;
+            display.innerHTML = this.innerHTML;
+
+            document.getElementById('customOptions').style.display = 'none';
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!document.querySelector('.custom-select-container').contains(event.target)) {
+            document.getElementById('customOptions').style.display = 'none';
+        }
+    });
+
+</script>
+
+
+<script>
+    document.getElementById('customSelect1').addEventListener('click', function() {
+        const options = document.getElementById('customOptions1');
+        options.style.display = options.style.display === 'block' ? 'none' : 'block';
+    });
+
+    document.querySelectorAll('.custom-options1 div').forEach(function(option) {
+        option.addEventListener('click', function() {
+            const value = this.getAttribute('data-value1');
+            const select = document.getElementById('isPublic1');
+            const display = document.getElementById('customSelect1');
+
+            select.value = value;
+            display.innerHTML = this.innerHTML;
+
+            document.getElementById('customOptions1').style.display = 'none';
+        });
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!document.querySelector('.custom-select-container1').contains(event.target)) {
+            document.getElementById('customOptions1').style.display = 'none';
+        }
+    });
+
+</script>
+
+<!-- delete modal-->
+<script>
+    var deletePostModal = document.getElementById('deletePostModal');
+    deletePostModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget;
+        // Extract info from data-* attributes
+        var contentId = button.getAttribute('data-content-id');
+        // Update the modal's delete button to pass this ID to deleteUser function
+        var confirmDeletePostButton = document.getElementById('confirmDeletePostButton');
+        confirmDeletePostButton.setAttribute('onclick', 'deleteUser(' + contentId + ')');
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var savePostModal = document.getElementById('saveModal'); // Ensure the ID matches the HTML
+        savePostModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget;
+            // Extract info from data-* attributes
+            var contentId = button.getAttribute('data-content-id');
+            // Update the modal's save button to pass this ID to saveUser function
+            var confirmSavePostButton = document.getElementById('confirmSavePostButton');
+            confirmSavePostButton.setAttribute('onclick', 'saveUser(' + contentId + ')');
+        });
+    });
+
+    var deleteShareModal = document.getElementById('deleteShareModal');
+    deleteShareModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget;
+        // Extract info from data-* attributes
+        var shareId = button.getAttribute('data-share-id');
+        // Update the modal's delete button to pass this ID to deleteUser function
+        var confirmDeleteShareButton = document.getElementById('confirmDeleteShareButton');
+        confirmDeleteShareButton.setAttribute('onclick', 'deleteShare(' + shareId + ')');
+    });
+
+    var deletePollModal = document.getElementById('deletePollModal');
+    deletePollModal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget;
+        // Extract info from data-* attributes
+        var pollId = button.getAttribute('data-poll-id');
+        var pollOptionId = button.getAttribute('data-poll-option');
+
+        // Update the modal's delete button to pass this ID to deleteUser function
+        var confirmDeletePollButton = document.getElementById('confirmDeletePollButton');
+        confirmDeletePollButton.setAttribute('onclick', 'deletePoll(' + pollId + ','+pollOptionId+')');
+    });
+
+</script>
+<!--kym me end-->
+
+
+
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tributejs/dist/tribute.js"></script>
+<script th:src="@{/static/assets/js/search.js}"></script>
+<script th:src="@{/static/assets/js/kym/post-for-user.js}"></script>
+<script th:src="@{/static/assets/js/kym/poll-for-user.js}"></script>
+
+<script th:src="@{/static/assets/js/userprofile.js}"></script>
+<script th:src="@{/static/assets/js/noti-user-profile.js}"></script>
+<!--Success Modal Box-->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!--
+<script th:inline="javascript">
+    var error = /*[[${error}]]*/ '';
+    if (error) {
+        alert(error);
+    }
+
+</script>
+-->
+
+
+
+<!--change password start-->
+
+<script>
+    const modal = document.getElementById('changePasswordModal');
+    const bootstrapModal = new bootstrap.Modal(modal, {
+        backdrop: true // Display and fade the backdrop when the modal is open
+    });
+
+    const changePasswordForm = document.getElementById('changePasswordForm');
+
+    function closeModal() {
+        bootstrapModal.hide();
+    }
+
+    // Event listener for modal close event
+    modal.addEventListener('hidden.bs.modal', function () {
+        changePasswordForm.reset();
+        // Reset error messages
+        document.getElementById('currentPasswordError').textContent = '';
+        document.getElementById('newPasswordError').textContent = '';
+        document.getElementById('confirmPasswordError').textContent = '';
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const togglePassword = (inputId, toggleId) => {
+            const input = document.getElementById(inputId);
+            const toggle = document.getElementById(toggleId);
+
+            toggle.addEventListener('click', () => {
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                toggle.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+        };
+
+        togglePassword('currentPassword', 'toggleCurrentPassword');
+        togglePassword('newPassword', 'toggleNewPassword');
+        togglePassword('confirmPassword', 'toggleConfirmPassword');
+    });
+</script>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function() {
+    var form = document.getElementById('changePasswordForm');
+
+    var currentPassword = document.getElementById('currentPassword');
+    var newPassword = document.getElementById('newPassword');
+    var confirmPassword = document.getElementById('confirmPassword');
+
+    var currentPasswordError = document.getElementById('currentPasswordError');
+    var newPasswordError = document.getElementById('newPasswordError');
+    var confirmPasswordError = document.getElementById('confirmPasswordError');
+
+    // Reset error messages
+    function resetErrors() {
+        currentPasswordError.textContent = '';
+        newPasswordError.textContent = '';
+        confirmPasswordError.textContent = '';
+    }
+
+    // Add event listeners to hide error messages on input focus
+    currentPassword.addEventListener('focus', function() {
+        currentPasswordError.textContent = '';
+    });
+    newPassword.addEventListener('focus', function() {
+        newPasswordError.textContent = '';
+    });
+    confirmPassword.addEventListener('focus', function() {
+        confirmPasswordError.textContent = '';
+    });
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        resetErrors();
+
+        var formData = new FormData(form);
+        var formValid = true;
+
+        if (currentPassword.value.trim() === '') {
+            currentPasswordError.textContent = 'Current password is required.';
+            formValid = false;
+        }
+
+        if (newPassword.value.trim() === '') {
+            newPasswordError.textContent = 'New password is required.';
+            formValid = false;
+        }
+
+        if (confirmPassword.value.trim() === '') {
+            confirmPasswordError.textContent = 'Confirm password is required.';
+            formValid = false;
+        }
+
+        if (newPassword.value !== confirmPassword.value) {
+            confirmPasswordError.textContent = 'New password and confirm password do not match.';
+            formValid = false;
+        }
+
+        if (formValid) {
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        if (data.error.includes('old password')) {
+                            currentPasswordError.textContent = data.error;
+                        } else if (data.error.includes('New Password and Confirm Password')) {
+                            confirmPasswordError.textContent = data.error;
+                        }
+                    } else if (data.success) {
+                        $('#changePasswordModal').modal('hide').on('hidden.bs.modal', function () {
+                            Swal.fire({
+                                title: "Good job!",
+                                text: data.success,
+                                icon: "success"
+                            }).then(() => {
+                                window.location.href = '/user/viewprofile';
+                            });
+                        });
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    });
+});
+</script>
+<!--Change Password end-->
+<script>
+    // Hide the overlay after 3 seconds
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const dat = document.getElementById('dat');
+            dat.style.opacity = '0';
+            dat.style.pointerEvents = 'none';
+            setTimeout(() => {
+                dat.style.display = 'none';
+            }, 500); // Match the transition duration
+        }, 500);
+    });
+</script>
+
+
+</body>
+</html>

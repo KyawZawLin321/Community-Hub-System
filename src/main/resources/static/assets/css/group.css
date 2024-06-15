@@ -1,0 +1,292 @@
+.btn-create-group {
+    font-size: 14px;
+    padding: 5px 10px;
+    height: 40px;
+    margin-left: 150%;
+}
+.modal-content {
+    background-color: #fefefe;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#image-preview {
+    max-width:20%;
+    height: auto;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.selected-items {
+    /*border: 1px solid #ccc;*/
+    border: 1.5px solid #000;
+    padding: 10px;
+    border-radius: 15px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+.selected-item {
+    display: inline-block;
+    background-color:#a2d6f9;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    border: 1.5px solid #000;
+}
+.selected-item span {
+    margin-right: 5px;
+}
+.selected-item .remove-btn {
+    cursor: pointer;
+}
+
+.add-button {
+    background-color: #369;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 7px 7px;
+    cursor: pointer;
+}
+.add-button:hover {
+    background-color: #369;
+}
+.modal-title-grouppage {
+    color: black;
+    margin-left: 35%;
+}
+.form-group {
+    position: relative;
+    padding: 20px 0;
+}
+.form-group label {
+    color: black;
+    font-size: 20px;
+    font-weight: 100;
+    position: absolute;
+    top: -30px;
+    left: 0;
+    margin-left: 0;
+    width: 100%;
+}
+.form-group input {
+    border: none;
+    border-bottom: 1.5px solid #000;
+    color: black;
+    display: block;
+    font-size: 20px;
+    padding: 10px 0;
+    width: 100%;
+    margin-top: 30px;
+}
+.form-group label {
+    color: black;
+    font-size: 20px;
+    font-weight: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    transform: translateY(30px);
+    margin-left: 50%;
+    margin-top: 30px;
+}
+.form-group input:valid,
+.form-group input:focus {
+    border-bottom-color: #369;
+    outline: none;
+    margin-right: 50%;
+    margin-top: 30px;
+}
+.form-group input:valid + label,
+.form-group input:focus + label {
+    color: #369;
+    font-size: 20px;
+    /*font-weight: bold;*/
+    transform: translateY(0);
+    margin-right: 50%;
+    margin-top: 30px;
+}
+.form-group label {
+    transition: all 0.2s ease-in-out;
+    margin-right: 50%;
+}
+.form-group {
+    display: inline-block;
+    width: calc(60% - 20px);
+}
+.form-group input {
+    width: calc(100% - 20px);
+    margin-left: 50%;
+}
+div#AvatarFileUpload {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    background: #f9f9f9;
+    border: 1px solid #000;
+    border-radius: 50% 50%;
+    margin-left: 220%;
+}
+div#AvatarFileUpload > .selected-image-holder{
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 50%;
+}
+div#AvatarFileUpload > .selected-image-holder{
+    width: 100%;
+    overflow: hidden;
+}
+div#AvatarFileUpload > .selected-image-holder>img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-fit: center center;
+}
+div#AvatarFileUpload > .avatar-selector{
+    position: absolute;
+    bottom: 8px;
+    right: 19%;
+    width: 20px;
+    height: 20px;
+}
+div#AvatarFileUpload > .avatar-selector input[type="file"]{
+    display: none;
+}
+div#AvatarFileUpload > .avatar-selector > .avatar-selector-btn{
+    width: 100%;
+    height: 100%;
+    background: #f5f5f59e;
+    padding: 5px 7px;
+    border-radius: 50% 50%;
+}
+div#AvatarFileUpload > .avatar-selector > .avatar-selector-btn>img{
+    width: 100%;
+    height: 100%;
+    object-fit: scale-down;
+    object-position: center center;
+    z-index: 2;
+}
+.card-body-photo {
+    display: inline-block;
+    vertical-align: top;
+    width: calc(5% - 2px);
+    margin-right: 20px;
+}
+
+#AvatarFileUpload {
+    display: inline-block;
+    vertical-align: top;
+    width: 150px;
+    height: 150px;
+    background: #f9f9f9;
+    border: 3px solid #bbb;
+    border-radius: 50%;
+    /*margin-left: 200%;*/
+}
+#myTable th {
+    background-color: #369;
+    color: #FC3;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+}
+.card {
+    max-width: 30em;
+    height: 10em;
+    flex-direction: row;
+    background-color: #696969;
+    border-radius: 20px;
+    box-shadow: 0 7px 7px rgba(0, 0, 0, 0.229);
+    /*margin: 3em auto;*/
+    /*margin-left: 60px;*/
+}
+.card.dark {
+    color: #fff;
+}
+.card.card.bg-light-subtle .card-title {
+    color: dimgrey;
+}
+.card img {
+    max-width: 41%;
+    margin: auto;
+    padding: 0.7em;
+    border-radius: 1.5em;
+    object-fit: cover;
+}
+.card-body {
+    display: flex;
+    justify-content: space-between;
+}
+.text-section {
+    max-width: 150%;
+    margin-top: 30px;
+}
+.card-title {
+    margin-bottom: 19px;
+}
+.cta-section .btn {
+    padding: 0.3em 0.5em;
+    /* color: #696969; */
+}
+.card.bg-light-subtle .cta-section .btn {
+    background-color: #898989;
+    border-color: #898989;
+}
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 3.9%;
+}
+
+@media screen and (max-width: 475px) {
+    .card {
+        font-size: 0.9em;
+    }
+}
+/*Char*/
+.dropdown-img {
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    /*min-width: 160px;*/
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content button {
+    display: inline-block;
+    margin-right: 100px; /* Adjust as needed */
+}
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+.show {
+    display: block;
+}
+.btn-create-group {
+    background-color: #369;
+    color: #fff;
+    border: #369;
+    transition: color 0.3s ease;
+    border-radius: 30px;
+}
+
+.btn-create-group:hover {
+    color: #fc3;
+    background-color: #369;
+}
+
+

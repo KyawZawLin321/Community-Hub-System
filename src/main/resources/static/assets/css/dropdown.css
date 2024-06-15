@@ -1,0 +1,271 @@
+.icon-select {
+    display: none; /* Hide the original select element */
+}
+
+.custom-select-container {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon/text and the dropdown indicator *!*/
+    border: 1px solid #ccc;
+    padding: 0px 9px; /* Adjust padding for better alignment */
+    cursor: pointer;
+    user-select: none;
+    background-color:#fdfdfde8;
+    min-width: 116px;
+    width: 67px;
+    margin-left: 26px;
+    /*border-radius: 14%;*/
+}
+
+.custom-options {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    width: 82.3%;
+    margin-left: 18%;
+}
+
+.custom-options div {
+    padding: 5px 11px; /* Match padding with .custom-select */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon and text *!*/
+}
+
+.custom-options div:hover {
+    background-color:#b1b9be;
+}
+
+.custom-select i, .custom-options div i {
+    margin-right: 4px;
+    width: 29px;
+}
+
+
+
+
+.custom-select-container1 {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select1 {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon/text and the dropdown indicator *!*/
+    border: 1px solid #ccc;
+    padding: 0px 9px; /* Adjust padding for better alignment */
+    cursor: pointer;
+    user-select: none;
+    background-color:#fdfdfde8;
+    min-width: 116px;
+    width: 67px;
+    margin-left: 26px;
+    /*border-radius: 14%;*/
+}
+
+.custom-options1 {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    width: 82.3%;
+    margin-left: 18%;
+}
+
+.custom-options1 div {
+    padding: 5px 11px; /* Match padding with .custom-select */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon and text *!*/
+}
+
+.custom-options1 div:hover {
+    background-color:#b1b9be;
+}
+
+.custom-select1 i, .custom-options1 div i {
+    margin-right: 4px;
+    width: 29px;
+}
+
+
+
+
+
+
+
+
+.custom-select-container2 {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-select2 {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon/text and the dropdown indicator *!*/
+    border: 1px solid #ccc;
+    padding: 0px 9px; /* Adjust padding for better alignment */
+    cursor: pointer;
+    user-select: none;
+    background-color:#fdfdfde8;
+    min-width: 116px;
+    width: 67px;
+    margin-left: 26px;
+    /*border-radius: 14%;*/
+}
+
+.custom-options2 {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    z-index: 1;
+    width: 82.3%;
+    margin-left: 18%;
+}
+
+.custom-options2 div {
+    padding: 5px 11px; /* Match padding with .custom-select */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; !* Ensure space between icon and text *!*/
+}
+
+.custom-options2 div:hover {
+    background-color:#b1b9be;
+}
+
+.custom-select2 i, .custom-options2 div i {
+    margin-right: 4px;
+    width: 29px;
+}
+
+
+
+
+/*modal fade*/
+.comment {
+    z-index: 202; /* Ensure the modal is above the overlay */
+
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 201; /* Should be less than modal's z-index */
+    display: none;
+}
+
+/*photo scrooll*/
+
+.uploaded-photos {
+    /*display:  inline-block;*/
+    flex-wrap: wrap;
+    /*gap: 10px;*/
+    max-height: 300px; /* Set maximum height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    scrollbar-width: none
+}
+
+/*.uploaded-photos {*/
+/*    display: inline-block;*/
+/*    flex-wrap: wrap;*/
+/*    gap: 10px;*/
+/*    margin: 10px;*/
+/*}*/
+
+.file-container {
+    position: relative;
+    display: inline-block;
+    /*margin: 10px;                            kym 19*/
+    margin-right: 17px;
+}
+
+.close-button {
+    position: absolute;
+    /*top: 5px;*/
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 300;
+}
+
+.uploaded-photo {
+    /*display: block;*/
+    max-width: 100%;
+    /*!*height: auto;*!                       5 19 2024*/
+    max-height: 150px;
+    object-fit: cover;
+    width: 117px;
+}
+
+
+
+
+
+
+.image-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /*background-color: rgba(0,0,0,0.9); !* Black with opacity *!*/
+}
+
+.image-modal .close-modal {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.image-modal .modal-content {
+    margin-left: 22%;
+    display: block;
+    width: 55%;
+    max-width: 80%;
+    height: 70%;
+    margin-top: 7%;
+}
+
+.image-modal .close-modal:hover,
+.image-modal .close-modal:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}

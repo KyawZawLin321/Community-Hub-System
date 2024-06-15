@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .links a, .short-links a{
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin: -5px;
+            color: white;
+            width: fit-content;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+<div class="left-sidebar" th:fragment="left-sidebar" style="background-color: #369; margin-left: -4%; width: 340px; height: 90%; overflow-y: scroll; overflow-x: hidden; direction: rtl; scrollbar-width: none; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);">
+    <div class="links" style="margin-top: 15%;margin-left: 14%;direction: ltr;color: black;font-size: 18px">
+        <a th:href="@{/admin/dashboard}" sec:authorize="hasAuthority('Admin')" th:classappend="${page == 'dashboard'} ? 'active'"><i class="fa-solid fa-chart-line mx-3"></i>DashBoard<span></span></a>
+        <a th:href="@{/post}" th:classappend="${page == 'post'} ? 'active'"><i class="fa-solid fa-house mx-3"></i>Home<span></span></a>
+        <a th:href="@{/user/viewprofile}" th:classappend="${page == 'profile'} ? 'active'"><i class="fa-solid fa-user mx-3"></i>Profile<span></span></a>
+        <a th:href="@{/event}" th:classappend="${page == 'event'} ? 'active'"><i class="fa-solid fa-calendar-alt mx-3"></i>Event<span></span></a>
+        <a th:href="@{/group/createPage}" th:classappend="${page == 'creategroup'} ? 'active'"><i class="fas fa-users mx-3"></i>Group<span></span></a>
+        <a th:href="@{/group/group-chat}" th:classappend="${page == 'groupchat'} ? 'active'"><i class="fas fa-comments mx-3"></i>GroupChat<span></span></a>
+        <a th:href="@{/guideline/create}" sec:authorize="hasAuthority('Admin')" th:classappend="${page == 'guideline'} ? 'active'"><i class="fas fa-file-alt mx-3"></i>Guideline<span></span></a>
+<!--        <a href="#" th:classappend="${page == 'kym'} ? 'active'"><i class="fa-solid fa-gear mx-3"></i>Setting<span></span></a>-->
+        <a th:href="@{/user/trash}"  th:classappend="${page == 'trash'} ? 'active'"> <i class="fa-solid fa-trash mx-3"></i>Trash<span></span></a>
+        <a th:href="@{/kym}"  th:classappend="${page == 'kym'} ? 'active'"><i class="fa-solid fa-bookmark mx-3"></i>Save Post<span></span></a>
+<!--        <a th:href="@{/resource}" th:classappend="${page == 'resource'} ? 'active'"><i class="fa-solid fa-gear mx-3"></i>Resource<span></span></a>-->
+
+
+
+
+
+    </div>
+
+        <div class="short-links" style="direction: ltr">
+            <p style="color: white;margin-left: 34%;font-family: Math;font-size: 136%">Your Shortcuts</p>
+            <div th:each="group : ${userGroups}" style="margin-left: 15%">
+                <a th:href="@{/group/{groupId}(groupId=${group.id})}">
+                    <img th:src="@{${group.photo}}">
+                    <span th:text="${group.name}" style="width:76px;margin-right: 22%"></span>
+                </a>
+            </div>
+        </div>
+
+</div>
+</body>
+</html>

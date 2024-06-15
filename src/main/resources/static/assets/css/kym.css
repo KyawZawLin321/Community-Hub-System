@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    /*   overflow-x:hidden; */
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    margin: 5px auto;
+}
+
+.center {
+    margin: 50px 30%;
+}
+
+.form {
+}
+
+.form-body {
+    border-radius: 50px;
+}
+
+.form-submit {
+    width: 100%;
+    display: block;
+    color: gray;
+    padding: 11px 35px;
+    background: #ebf3fa;
+    border-radius: 50px;
+}
+
+.form-body img {
+    float: left;
+    width: 45px;
+    position: relative;
+    left: -55px;
+}
+
+.post {
+    /*   height:300px; */
+    margin: 70px 1px;
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 12px;
+}
+
+.post .info {
+    position: relative;
+    top: 15px;
+}
+.post .info img {
+    width: 45px;
+}
+.post .info p {
+    position: relative;
+    top: -40px;
+    left: 60px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: none;
+}
+
+.post-body {
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+.post-body p {
+    font-size: 20px;
+    margin: 5px 0;
+}
+
+.post-body img,
+.post-body video {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+}
+
+.post .post-bottom {
+    text-align: center;
+    padding: 5px;
+    margin: 0;
+    margin-top: 10px;
+    border-top: 1px solid gray;
+}
+
+.post .post-bottom i {
+    margin: 0 10px;
+    padding: 5px 5%;
+    border-radius: 40px;
+    transition: 0.5s;
+}
+
+.post .post-bottom i:hover {
+    background: #f0ffff;
+    color: #8debff;
+}
+
+/* NEW POST */
+
+.comment {
+    position: absolute;
+    top: 0;
+    min-height: 150%;
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.comment-box {
+    /*   position:absolute; */
+    top: 50%;
+    left: 5%;
+    width: 500px;
+    background: #fff;
+    border: 1px solid whitesmoke;
+    display: block;
+    border-radius: 8px;
+    margin: 100px auto;
+    padding: 10px;
+}
+
+.comment-header {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+    border-radius: 5px 5px 0px 0px;
+    min-height: 26px;
+}
+
+.comment-header h3 {
+    width: 80%;
+    float: left;
+    text-align: center;
+}
+
+.comment-header i {
+    border-radius: 50px;
+    background: #e7e7e7;
+    padding: 5px 8px;
+    font-size: 1.5rem;
+}
+
+.comment-body textarea {
+    min-width: 93%;
+    max-width: 94%;
+    margin: 10px 1%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 20px;
+    min-height: 200px;
+    max-height: 250px;
+}
+
+.comment-body textarea:focus {
+    border: none;
+}
+
+.button-send {
+    width: 100%;
+    margin: 20px 4px;
+    background: #e7e7e7;
+    color: gray;
+    padding: 10px 5px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.button-send:hover {
+    background: rgba(218, 218, 218, 0.5);
+}
+
+.comment-bottom {
+    margin: 10px;
+    padding: 2px;
+}
+
+.comment-bottom i {
+    margin-left: 15px;
+    background: whitesmoke;
+    padding: 6px 5%;
+    border-radius: 40px;
+    width: 10%;
+    text-align: center;
+}
+
+.comment-bottom i:hover {
+    background: #ef78;
+    color: #f0f0f0;
+}
+
+.comment-header .message {
+    /*   display:none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 0;
+    background: aqua;
+    color: #fff;
+    text-align: center;
+}
+
+.icon input[type="file"] {
+    display: none;
+}
+
+@media screen and (max-width: 562px) {
+    .comment-box {
+        width: 80%;
+    }
+}
+
+/* ICON STYLE */
+.fas {
+    font-size: 1.3rem;
+}
+
+.fa-heart {
+    color: #f99aff;
+}
+
+.fa-share {
+    color: yellowgreen;
+}
+
+.fa-comment {
+    color: #ffd32d;
+}
+
+.fa-photo-video {
+    color: green;
+}
+
+.fa-music {
+    color: orange;
+}
+
+.fa-file-upload {
+    color: #6ac8ff;
+}
+.uploaded-photos {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.uploaded-photo {
+    width: 100px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
