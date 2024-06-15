@@ -44,6 +44,7 @@ cd community-hub-system
 **Backend:** Java,Spring Boot,MySql Database
 
 **Real-Time Communication:**Socket.io
+
 **File Storage:**www.cloudinary.com
 
 
